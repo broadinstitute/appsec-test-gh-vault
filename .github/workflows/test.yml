@@ -7,14 +7,14 @@ jobs:
       - name: "Checkout code"
         uses: actions/checkout@v2
       - name: "Import Vault dev secrets"
-        uses: hashicorp/vault-action@v2.1.0
+        uses: hashicorp/vault-action@v2.2.0
         id: secrets
         with:
           url: ${{ secrets.VAULT_ADDR }}
           token: ${{ secrets.VAULT_TOKEN }}
           exportEnv: false
           secrets: |
-            secret/dsde/dev/appsec/gh-test | CREDENTIALS_SECRET
+            secret/dsde/dev/appsec/gh-test | CREDENTIALS_SECRET ;
       - name: "Test env"
         run: |
           echo '$CREDENTIALS_SECRET:' $CREDENTIALS_SECRET
