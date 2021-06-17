@@ -17,5 +17,5 @@ jobs:
             secret/dsde/dev/appsec/gh-test foo | CREDENTIALS_SECRET ;
       - name: "Test env" # <-- This step uses the secret as an "output" of Vault Action step, instead of global environment variables (which would increase the risk)
         run: |
-          echo '$CREDENTIALS_SECRET:' $CREDENTIALS_SECRET
-          echo '${ steps.secrets.outputs.CREDENTIALS_SECRET }:' ${{ steps.secrets.outputs.CREDENTIALS_SECRET }}
+          echo '$CREDENTIALS_SECRET:' $CREDENTIALS_SECRET # this will be empty, since the secret is no longer passed via a global environment variable
+          echo '${ steps.secrets.outputs.CREDENTIALS_SECRET }:' ${{ steps.secrets.outputs.CREDENTIALS_SECRET }} # this will be masked in log outputs
