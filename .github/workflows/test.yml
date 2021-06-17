@@ -15,7 +15,7 @@ jobs:
           exportEnv: false # <-- This is the important setting for Vault Action
           secrets: |
             secret/dsde/dev/appsec/gh-test foo | CREDENTIALS_SECRET ;
-      - name: "Test env"
+      - name: "Test env" # <-- This step uses the secret as an "output" of Vault Action step, instead of global environment variables (which would increase the risk)
         run: |
           echo '$CREDENTIALS_SECRET:' $CREDENTIALS_SECRET
           echo '${ steps.secrets.outputs.CREDENTIALS_SECRET }:' ${{ steps.secrets.outputs.CREDENTIALS_SECRET }}
