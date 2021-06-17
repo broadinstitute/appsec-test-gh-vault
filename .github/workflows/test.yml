@@ -12,7 +12,7 @@ jobs:
         with:
           url: ${{ secrets.VAULT_ADDR }}
           token: ${{ secrets.VAULT_TOKEN }}
-          exportEnv: false # <-- This is the important setting for Vault Action
+          exportEnv: false # <-- This is the important setting to avoid unnecessary credential exposure!
           secrets: |
             secret/dsde/dev/appsec/gh-test foo | CREDENTIALS_SECRET ;
       - name: "Test env" # <-- This step uses the secret as an "output" of Vault Action step, instead of global environment variables (which would increase the risk)
