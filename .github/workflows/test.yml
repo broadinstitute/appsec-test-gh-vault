@@ -12,7 +12,7 @@ jobs:
         with:
           url: ${{ secrets.VAULT_ADDR }}
           token: ${{ secrets.VAULT_TOKEN }}
-          exportEnv: false
+          exportEnv: false # <-- This is the important setting for Vault Action
           secrets: |
             secret/dsde/dev/appsec/gh-test foo | CREDENTIALS_SECRET ;
       - name: "Test env"
